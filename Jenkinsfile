@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Deployment stage'){
             steps{
-                echo dockerRun ='docker run -p 3001:3000 -d --name nodejs reddyswa/nodeimage:${BUILD_NUMBER}'
+                echo dockerRun ='docker run -p 3001:3000 -d reddyswa/nodeimage:${BUILD_NUMBER}'
                 sshagent(['dev-server']) {
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.36.216 ${dockerRun}"
                 }
